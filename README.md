@@ -127,13 +127,22 @@ PyMOCAT-MC-2/
 │       └── megaconstellationLaunches.xlsx  # Launch schedules
 ├── MATLAB_implementation/             # Original MATLAB implementation with additional test files
 ├── comparison_tests/                  # Python vs MATLAB comparison tests
-│   ├── test_all_scenarios.py
-│   └── test_quick_scenarios.py
+│   ├── test_all_scenarios.py          # Comprehensive comparison across all scenarios
+│   ├── test_quick_scenarios.py        # Quick validation tests for basic scenarios
+│   ├── accuracy_error_data.csv        # Accuracy error measurements data
+│   └── accuracy_error_data.json       # Accuracy error data in JSON format
 ├── analysis_figures/                  # Analysis and visualization scripts
-│   ├── plot_total_object_counts.py
-│   ├── plot_execution_time.py
-│   ├── plot_object_type_heatmap.py
-│   └── plot_computational_efficiency.py
+│   ├── plot_total_object_counts.py    # Generate total object count comparison plots
+│   ├── plot_execution_time.py         # Visualize execution time performance
+│   ├── plot_object_type_heatmap.py    # Create heatmap of object type percentages
+│   ├── plot_computational_efficiency.py # Analyze computational efficiency metrics
+│   ├── measure_accuracy_errors.py     # Calculate accuracy errors between implementations
+│   ├── plot_error_analysis.py         # Generate error distribution plots
+│   ├── total_object_counts.png        # Output: Object count comparison visualization
+│   ├── execution_time_comparison.png  # Output: Performance comparison chart
+│   ├── object_type_percentage_heatmap.png # Output: Object type distribution heatmap
+│   ├── computational_efficiency_analysis.png # Output: Efficiency analysis chart
+│   └── error_box_plots.png            # Output: Error distribution visualization
 └── README.md                          # This file
 ```
 
@@ -144,6 +153,6 @@ PyMOCAT-MC-2/
 - Rushil Kukreja, Thomas Jefferson High School for Science and Technology
 - Dr. Edward J. Oughton, George Mason University
 - Dr. Giovanni Lavezzi, Massachusetts Institute of Technology
-- Dr. Enrico Zucchelli, Massachusetts Institute of Technology
+- Dr. Enrico M. Zucchelli, Massachusetts Institute of Technology
 - Dr. Daniel Jang, Lincoln Labs
 - Dr. Richard Linares, Massachusetts Institute of Technology
