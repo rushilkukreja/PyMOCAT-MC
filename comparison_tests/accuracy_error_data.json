@@ -1,0 +1,72 @@
+[
+  {
+    "scenario": "Basic Propagation",
+    "total_population_error": 59,
+    "total_population_rel_error": 0.4285299244625218,
+    "satellite_error": 0,
+    "satellite_rel_error": 0.0,
+    "derelict_error": 23,
+    "derelict_rel_error": 1.232583065380493,
+    "debris_error": 25,
+    "debris_rel_error": 0.26466229091679017,
+    "rocket_body_error": 11,
+    "rocket_body_rel_error": 1.0628019323671498,
+    "execution_time_ratio": 1.5321100917431192
+  },
+  {
+    "scenario": "Collision Test",
+    "total_population_error": 92,
+    "total_population_rel_error": 0.6684103458297006,
+    "satellite_error": 0,
+    "satellite_rel_error": 0.0,
+    "derelict_error": 41,
+    "derelict_rel_error": 2.197213290460879,
+    "debris_error": 36,
+    "debris_rel_error": 0.38123477708355397,
+    "rocket_body_error": 15,
+    "rocket_body_rel_error": 1.4506769825918762,
+    "execution_time_ratio": 0.24390243902439027
+  },
+  {
+    "scenario": "Atmospheric Drag",
+    "total_population_error": 91,
+    "total_population_rel_error": 0.6611450159837257,
+    "satellite_error": 0,
+    "satellite_rel_error": 0.0,
+    "derelict_error": 40,
+    "derelict_rel_error": 2.1436227224008575,
+    "debris_error": 36,
+    "debris_rel_error": 0.38123477708355397,
+    "rocket_body_error": 15,
+    "rocket_body_rel_error": 1.4506769825918762,
+    "execution_time_ratio": 0.36
+  },
+  {
+    "scenario": "Full Default",
+    "total_population_error": 123,
+    "total_population_rel_error": 0.8990570864702874,
+    "satellite_error": 0,
+    "satellite_rel_error": 0.0,
+    "derelict_error": 44,
+    "derelict_rel_error": 2.3796646836127637,
+    "debris_error": 61,
+    "debris_rel_error": 0.6472835314091682,
+    "rocket_body_error": 18,
+    "rocket_body_rel_error": 1.7543859649122806,
+    "execution_time_ratio": 0.4722222222222222
+  },
+  {
+    "scenario": "Realistic Launch",
+    "total_population_error": 31,
+    "total_population_rel_error": 0.22794117647058823,
+    "satellite_error": 1,
+    "satellite_rel_error": 0.0847457627118644,
+    "derelict_error": 25,
+    "derelict_rel_error": 1.3513513513513513,
+    "debris_error": 14,
+    "debris_rel_error": 0.15021459227467812,
+    "rocket_body_error": 20,
+    "rocket_body_rel_error": 1.9607843137254901,
+    "execution_time_ratio": 0.3993333333333333
+  }
+]
