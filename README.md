@@ -5,8 +5,7 @@
 ---
 
 ## Software Purpose
-
-MOCAT-MC provides a flexible, extensible framework for simulating the evolution of satellite populations and debris in Earth orbit. It is designed for:
+PyMOCAT-MC provides a flexible, extensible framework for simulating the evolution of satellite populations and debris in Earth orbit. It is designed for:
 - Assessing orbital capacity and congestion
 - Modeling satellite launches, collisions, and fragmentation
 - Evaluating the impact of megaconstellations
