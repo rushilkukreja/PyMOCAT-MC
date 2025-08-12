@@ -64,15 +64,15 @@ The repository is organized to facilitate both research use and further developm
 
 Across all tested scenarios, PyMOCAT-MC reproduces the results of the MATLAB implementation with high fidelity. Differences in total object counts between the two implementations are small, with a maximum deviation of 150 objects out of approximately 13,700. 
 
-![Comparison of object count trajectories between MATLAB and Python implementations for the Realistic Launch scenario. Differences remain within a small margin throughout the 30-year simulation horizon.](figures/object_counts.png)
+![Comparison of object count trajectories between MATLAB and Python implementations for the Realistic Launch scenario. Differences remain within a small margin throughout the 30-year simulation horizon.](figures/total_object_counts.png)
 
 In addition to matching the accuracy of MATLAB, the Python version delivers substantial performance gains. The most computationally demanding scenario, which includes realistic launch patterns for megaconstellations, runs in less than 29.95 with PyMOCAT-MC compared to 75.02 seconds in MATLAB, representing a speed-up larger than a factor of two. 
 
-![Runtime comparison between MATLAB and Python implementations for multiple scenarios, showing up to a 4× improvement in computational speed for PyMOCAT-MC.](figures/runtime_comparison.png)
+![Runtime comparison between MATLAB and Python implementations for multiple scenarios, showing up to a 4× improvement in computational speed for PyMOCAT-MC.](figures/execution_time_comparison.png)
 
 Error analysis confirms that the differences between MATLAB and Python remain minimal across simulation years and object types. The heatmap highlights that relative errors are uniformly low; the mean relative error is 0.96%, and the maximum error across object types and time horizons is 2.38%. 
 
-![Heatmap of relative error (%) across simulation years and object types, illustrating consistent accuracy of the Python implementation compared to MATLAB.](figures/error_heatmap.png)
+![Heatmap of relative error (%) across simulation years and object types, illustrating consistent accuracy of the Python implementation compared to MATLAB.](figures/object_type_percentage_heatmap.png)
 
 These improvements reduce the time required for large simulation batches, making it feasible to explore a wider range of parameters and run more detailed sensitivity analyses.
 
