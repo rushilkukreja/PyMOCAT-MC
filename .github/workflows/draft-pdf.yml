@@ -26,15 +26,31 @@ jobs:
           journal: joss
           paper-path: paper/paper.md
           
+      - name: List generated files
+        run: |
+          echo "Files in current directory:"
+          ls -la
+          echo "Files in paper directory:"
+          ls -la paper/
+          find . -name "*.pdf" -type f
+          
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: draft-paper-pdf
-          path: paper.pdf
-          
-      - name: Upload logs artifact
-        if: failure()
+          path: |
+            paper.pdf
+            ./paper.pdf
+            paper/paper.pdf
+            
+      - name: Upload all logs and outputs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pdf-generation-logs
-          path: paper.log
+          path: |
+            paper.log
+            ./paper.log
+            paper/paper.log
+            *.log
