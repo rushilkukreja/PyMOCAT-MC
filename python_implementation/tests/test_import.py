@@ -5,10 +5,10 @@ print("Testing Python MOCAT-MC imports...")
 
 try:
     import numpy as np
-    print("✓ NumPy imported successfully")
+    print("OK NumPy imported successfully")
     
     import scipy
-    print("✓ SciPy imported successfully")
+    print("OK SciPy imported successfully")
     
     import sys
     import os
@@ -16,11 +16,11 @@ try:
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
     
     from mocat_mc import MOCATMC
-    print("✓ MOCATMC imported successfully")
+    print("OK MOCATMC imported successfully")
     
     # Try to initialize
     mocat = MOCATMC()
-    print("✓ MOCATMC initialized")
+    print("OK MOCATMC initialized")
     
     # Check if we can load the initial conditions
     import scipy.io as sio
@@ -41,20 +41,20 @@ try:
             try:
                 data = sio.loadmat(str(ic_path))
                 if 'mat_sats' in data:
-                    print(f"✓ Found 2020.mat with {data['mat_sats'].shape[0]} satellites at {ic_path}")
+                    print(f"OK Found 2020.mat with {data['mat_sats'].shape[0]} satellites at {ic_path}")
                     data_found = True
                     break
                 else:
-                    print(f"⚠ Found {ic_path} but no mat_sats data")
+                    print(f"WARNING Found {ic_path} but no mat_sats data")
             except Exception as e:
-                print(f"⚠ Found {ic_path} but couldn't load: {e}")
+                print(f"WARNING Found {ic_path} but couldn't load: {e}")
     
     if not data_found:
-        print("⚠ Could not find 2020.mat file - tests will use synthetic data")
+        print("WARNING Could not find 2020.mat file - tests will use synthetic data")
     
     print("\nPython setup appears to be working!")
     
 except Exception as e:
-    print(f"✗ Error: {e}")
+    print(f"ERROR Error: {e}")
     import traceback
     traceback.print_exc()

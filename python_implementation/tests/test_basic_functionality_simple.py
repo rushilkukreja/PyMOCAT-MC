@@ -18,9 +18,9 @@ print("Running basic functionality tests...")
 try:
     from supporting_functions.get_idx import get_idx
     from supporting_functions.categorize_obj import categorize_obj
-    print("✓ Basic imports successful")
+    print("OK Basic imports successful")
 except ImportError as e:
-    print(f"✗ Import failed: {e}")
+    print(f"ERROR Import failed: {e}")
     sys.exit(1)
 
 # Test 2: Index structure
@@ -30,9 +30,9 @@ try:
     assert 'a' in idx
     assert 'mass' in idx
     assert len(idx) == 20
-    print("✓ Index structure test passed")
+    print("OK Index structure test passed")
 except Exception as e:
-    print(f"✗ Index structure test failed: {e}")
+    print(f"ERROR Index structure test failed: {e}")
     sys.exit(1)
 
 # Test 3: MOCAT-MC import
@@ -41,9 +41,9 @@ try:
     mocat = MOCATMC()
     assert hasattr(mocat, 'constants')
     assert hasattr(mocat, 'idx')
-    print("✓ MOCAT-MC import successful")
+    print("OK MOCAT-MC import successful")
 except ImportError as e:
-    print(f"⚠ MOCAT-MC import skipped: {e}")
+    print(f"WARNING MOCAT-MC import skipped: {e}")
 
 print("\nAll basic functionality tests passed!")
 sys.exit(0)

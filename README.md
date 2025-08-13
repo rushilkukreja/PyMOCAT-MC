@@ -6,7 +6,7 @@
 
 ## Statement of Need
 
-As the orbital environment becomes increasingly congested with satellite deployments and large-scale constellations, modeling space traffic and debris risk has become crucial for space sustainability research. The original MATLAB MOCAT-MC toolbox is a leading framework for orbital capacity assessment, but its proprietary licensing limits accessibility and hinders integration with modern Python-based data science and machine learning workflows that are central to contemporary space research.
+As the orbital environment becomes increasingly congested with satellite deployments and large-scale constellations, modeling space traffic and debris risk has become crucial for space sustainability research. The original MATLAB MOCAT-MC toolbox is a leading framework for orbital capacity assessment, but it limits accessibility and hinders integration with modern Python-based data science and machine learning workflows that are central to contemporary space research.
 
 PyMOCAT-MC addresses these barriers by providing a functionally equivalent, open-source Python implementation that maintains full compatibility with the original while improving performance and accessibility. This enables broader adoption in the space research community and integration with state-of-the-art scientific computing tools.
 
@@ -272,8 +272,8 @@ If you use PyMOCAT-MC in your research, please cite:
 ## Contributors
 
 - Rushil Kukreja, Thomas Jefferson High School for Science and Technology
-- Dr. Edward J. Oughton, George Mason University
-- Dr. Giovanni Lavezzi, Massachusetts Institute of Technology
-- Dr. Enrico M. Zucchelli, Massachusetts Institute of Technology
-- Dr. Daniel Jang, Lincoln Labs
-- Dr. Richard Linares, Massachusetts Institute of Technology
+- Dr. Edward J. Oughton, Assistant Professor, George Mason University
+- Dr. Giovanni Lavezzi, Research Scientist, Massachusetts Institute of Technology
+- Dr. Enrico M. Zucchelli, Postdoctoral Associate, Massachusetts Institute of Technology
+- Dr. Daniel Jang, Technical Staff, Lincoln Laboratory
+- Dr. Richard Linares, Associate Professor, Massachusetts Institute of Technology

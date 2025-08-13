@@ -25,7 +25,7 @@ def run_test(name, script_path):
     
     # Check if test file exists
     if not script_path.exists():
-        print(f"{RED}✗ Test file not found: {script_path}{RESET}")
+        print(f"{RED}X Test file not found: {script_path}{RESET}")
         return "missing"
     
     try:
@@ -34,7 +34,7 @@ def run_test(name, script_path):
             check_cmd = [sys.executable, "-c", "import numpy, scipy; print('Dependencies OK')"]
             dep_result = subprocess.run(check_cmd, capture_output=True, text=True, timeout=10)
             if dep_result.returncode != 0:
-                print(f"{RED}✗ Missing dependencies: {dep_result.stderr.strip()}{RESET}")
+                print(f"{RED}X Missing dependencies: {dep_result.stderr.strip()}{RESET}")
                 print(f"{YELLOW}Run: pip install -r requirements.txt{RESET}")
                 return "deps_missing"
         
@@ -66,19 +66,19 @@ def run_test(name, script_path):
         
         # Check for errors
         if result.returncode == 0:
-            if "ERROR" in result.stdout or "✗" in result.stdout:
+            if "ERROR" in result.stdout or "X " in result.stdout:
                 # Count errors vs successes
-                error_count = result.stdout.count("✗") + result.stdout.count("ERROR")
-                success_count = result.stdout.count("✓") + result.stdout.count("SUCCESS")
+                error_count = result.stdout.count("X ") + result.stdout.count("ERROR")
+                success_count = result.stdout.count("OK") + result.stdout.count("SUCCESS")
                 
                 if success_count > error_count:
-                    print(f"{YELLOW}⚠ Test completed with warnings{RESET}")
+                    print(f"{YELLOW}! Test completed with warnings{RESET}")
                     return "warning"
                 else:
-                    print(f"{RED}✗ Test failed with errors{RESET}")
+                    print(f"{RED}X Test failed with errors{RESET}")
                     return "failed"
             else:
-                print(f"{GREEN}✓ Test passed{RESET}")
+                print(f"{GREEN}+ Test passed{RESET}")
                 return "passed"
         else:
             if result.stderr:
@@ -88,25 +88,25 @@ def run_test(name, script_path):
                 
                 # Check for common issues
                 if "ModuleNotFoundError" in stderr:
-                    print(f"{YELLOW}💡 Hint: Try 'pip install -r requirements.txt'{RESET}")
+                    print(f"{YELLOW}Hint: Try 'pip install -r requirements.txt'{RESET}")
                 elif "Permission denied" in stderr:
-                    print(f"{YELLOW}💡 Hint: Check file permissions{RESET}")
+                    print(f"{YELLOW}Hint: Check file permissions{RESET}")
                 elif "No such file" in stderr:
-                    print(f"{YELLOW}💡 Hint: Run from repository root directory{RESET}")
+                    print(f"{YELLOW}Hint: Run from repository root directory{RESET}")
             
-            print(f"{RED}✗ Test failed (exit code: {result.returncode}){RESET}")
+            print(f"{RED}X Test failed (exit code: {result.returncode}){RESET}")
             return "failed"
             
     except subprocess.TimeoutExpired:
-        print(f"{RED}✗ Test timed out (>120 seconds){RESET}")
-        print(f"{YELLOW}💡 Hint: Test may be hanging on import or computation{RESET}")
+        print(f"{RED}X Test timed out (>120 seconds){RESET}")
+        print(f"{YELLOW}Hint: Test may be hanging on import or computation{RESET}")
         return "timeout"
     except FileNotFoundError:
-        print(f"{RED}✗ Python interpreter not found{RESET}")
-        print(f"{YELLOW}💡 Hint: Make sure Python is installed and in PATH{RESET}")
+        print(f"{RED}X Python interpreter not found{RESET}")
+        print(f"{YELLOW}Hint: Make sure Python is installed and in PATH{RESET}")
         return "error"
     except Exception as e:
-        print(f"{RED}✗ Test error: {e}{RESET}")
+        print(f"{RED}X Test error: {e}{RESET}")
         return "error"
 
 
@@ -154,19 +154,19 @@ def main():
     
     for test_name, result in results.items():
         if result == "passed":
-            symbol = f"{GREEN}✓{RESET}"
+            symbol = f"{GREEN}+{RESET}"
         elif result == "failed":
-            symbol = f"{RED}✗{RESET}"
+            symbol = f"{RED}X{RESET}"
         elif result == "warning":
-            symbol = f"{YELLOW}⚠{RESET}"
+            symbol = f"{YELLOW}!{RESET}"
         elif result == "skipped":
-            symbol = f"{YELLOW}⊘{RESET}"
+            symbol = f"{YELLOW}S{RESET}"
         elif result == "missing":
-            symbol = f"{RED}📁{RESET}"
+            symbol = f"{RED}M{RESET}"
         elif result == "deps_missing":
-            symbol = f"{RED}📦{RESET}"
+            symbol = f"{RED}D{RESET}"
         else:
-            symbol = f"{RED}⚠{RESET}"
+            symbol = f"{RED}E{RESET}"
         
         print(f"{symbol} {test_name}: {result.upper().replace('_', ' ')}")
     
@@ -189,14 +189,14 @@ def main():
     total_issues = failed + errors + missing + deps_missing
     if total_issues == 0:
         if warnings > 0:
-            print(f"\n{YELLOW}{BOLD}All tests passed with warnings ⚠️{RESET}")
+            print(f"\n{YELLOW}{BOLD}All tests passed with warnings!{RESET}")
         else:
-            print(f"\n{GREEN}{BOLD}All tests passed! ✅{RESET}")
+            print(f"\n{GREEN}{BOLD}All tests passed!{RESET}")
         return 0
     else:
-        print(f"\n{RED}{BOLD}{total_issues} test(s) failed ❌{RESET}")
+        print(f"\n{RED}{BOLD}{total_issues} test(s) failed{RESET}")
         if deps_missing > 0:
-            print(f"{YELLOW}💡 Try running: python setup_environment.py{RESET}")
+            print(f"{YELLOW}Try running: python setup_environment.py{RESET}")
         return 1
 
 
