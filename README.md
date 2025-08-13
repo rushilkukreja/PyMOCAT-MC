@@ -4,36 +4,88 @@
 
 ---
 
+## Statement of Need
+
+As the orbital environment becomes increasingly congested with satellite deployments and large-scale constellations, modeling space traffic and debris risk has become crucial for space sustainability research. The original MATLAB MOCAT-MC toolbox is a leading framework for orbital capacity assessment, but its proprietary licensing limits accessibility and hinders integration with modern Python-based data science and machine learning workflows that are central to contemporary space research.
+
+PyMOCAT-MC addresses these barriers by providing a functionally equivalent, open-source Python implementation that maintains full compatibility with the original while improving performance and accessibility. This enables broader adoption in the space research community and integration with state-of-the-art scientific computing tools.
+
+## Comparison to Similar Software
+
+PyMOCAT-MC fills a unique niche in the orbital mechanics software ecosystem:
+
+- **Original MATLAB MOCAT-MC**: Proprietary, excellent algorithms but limited accessibility due to licensing costs and integration barriers with modern Python workflows
+- **Astropy/Poliastro**: General orbital mechanics libraries, but lack specialized Monte Carlo debris evolution and collision modeling capabilities
+- **MOCAT-pySSEM**: Related source-sink environmental modeling tool, but focuses on different aspects of space environment modeling
+- **Commercial debris analysis tools**: Often proprietary and expensive, with limited customization options
+
+PyMOCAT-MC uniquely combines the proven algorithms of MATLAB MOCAT-MC with open-source accessibility, performance improvements, and seamless integration with the Python scientific computing ecosystem.
+
 ## Software Purpose
 PyMOCAT-MC provides a flexible, extensible framework for simulating the evolution of satellite populations and debris in Earth orbit. It is designed for:
 - Assessing orbital capacity and congestion
 - Modeling satellite launches, collisions, and fragmentation
 - Evaluating the impact of megaconstellations
 - Supporting policy and engineering studies in orbital risk
+- Enabling integration with Python ML/data science ecosystems
 
 ---
 
-## Setup and Configuration
+## Installation
+
+### Install from PyPI (Recommended)
+
+```bash
+pip install pymocat-mc
+```
+
+### Install from Source
+
+Clone the repository and install in development mode:
+
+```bash
+git clone https://github.com/rushilkukreja/PyMOCAT-MC-2.git
+cd PyMOCAT-MC-2
+pip install -e .
+
+# Verify installation works
+python3 run_tests.py
+```
+
+### Verify Installation
+
+After installation, verify everything works:
+
+```bash
+# Run all tests
+python3 run_tests.py
+
+# Quick functionality check
+cd python_implementation && python3 -c "from mocat_mc import MOCATMC; print('✓ PyMOCAT-MC installed successfully')"
+```
+
+### Install with Development Dependencies
+
+For contributors and developers:
+
+```bash
+git clone https://github.com/rushilkukreja/PyMOCAT-MC-2.git
+cd PyMOCAT-MC-2
+pip install -e ".[dev]"
+
+# Or use automated setup (creates virtual environment)
+python3 setup_environment.py
+```
 
 ### Requirements
 
-Key dependencies include:
+- Python >= 3.8
 - numpy >= 1.21.0
 - scipy >= 1.7.0
 - pandas >= 1.3.0
 - matplotlib >= 3.5.0
-- Python >= 3.8
 
-### Installation
-
-It is recommended to use a virtual environment:
-
-```bash
-cd python_implementation
-python -m venv mocat_env
-source mocat_env/bin/activate  # On Windows: mocat_env\Scripts\activate
-pip install numpy scipy pandas matplotlib
-```
+All dependencies will be automatically installed with pip.
 
 ---
 ## Usage
@@ -120,11 +172,17 @@ PyMOCAT-MC-2/
 │   │   ├── fillin_atmosphere.py       # Atmospheric model interface
 │   │   ├── fillin_physical_parameters.py  # Object physical properties
 │   │   └── [additional utilities...]
-│   └── supporting_data/
-│       ├── TLEhistoric/               # Historical TLE data (2000-2023)
-│       ├── dens_jb2008_032020_022224.mat  # Atmospheric density data
-│       └── megaconstellationLaunches.xlsx  # Launch schedules
-├── MATLAB_implementation/             # Original MATLAB implementation with additional test files
+│   ├── supporting_data/
+│   │   ├── TLEhistoric/               # Historical TLE data (2000-2023)
+│   │   ├── dens_jb2008_032020_022224.mat  # Atmospheric density data
+│   │   └── megaconstellationLaunches.xlsx  # Launch schedules
+│   └── tests/
+│       ├── test_basic_functionality_simple.py  # Core functionality tests
+│       ├── test_import.py             # Import and data loading tests
+│       ├── minimal_test.py            # Minimal 2-step simulation test
+│       └── test_simple_run.py         # Single time-step test
+├── tests/
+│   └── README.md                      # Test suite documentation
 ├── comparison_tests/                  # Python vs MATLAB comparison tests
 │   ├── test_all_scenarios.py          # Comprehensive comparison across all scenarios
 │   ├── test_quick_scenarios.py        # Quick validation tests for basic scenarios
@@ -142,7 +200,71 @@ PyMOCAT-MC-2/
 │   ├── object_type_percentage_heatmap.png # Output: Object type distribution heatmap
 │   ├── computational_efficiency_analysis.png # Output: Efficiency analysis chart
 │   └── error_box_plots.png            # Output: Error distribution visualization
+├── MATLAB_implementation/             # Original MATLAB implementation
+├── paper/                             # JOSS paper and figures
+├── run_tests.py                       # Python test runner (cross-platform)
+├── run_tests.sh                       # Bash test runner (Unix/macOS)
+├── setup_environment.py               # Automated environment setup
+├── requirements.txt                   # Python dependencies
+├── pyproject.toml                     # Modern Python packaging configuration
+├── setup.py                           # Traditional Python packaging
+├── CONTRIBUTING.md                    # Contribution guidelines
+├── TESTING.md                         # Detailed testing instructions
+├── LICENSE                            # MIT License
+├── CITATION.cff                       # Citation metadata
 └── README.md                          # This file
+```
+
+---
+
+## Testing
+
+Run the test suite using our custom test runners:
+
+```bash
+# Recommended: Run all tests with Python runner
+python3 run_tests.py
+
+# Alternative: Use bash runner (Unix/macOS only)
+./run_tests.sh
+
+# Individual tests
+python3 python_implementation/tests/test_basic_functionality_simple.py
+python3 python_implementation/tests/test_import.py
+python3 python_implementation/tests/minimal_test.py
+python3 python_implementation/tests/test_simple_run.py
+```
+
+For detailed testing instructions and troubleshooting, see [TESTING.md](TESTING.md).
+
+---
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and contribute to the project.
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Citation
+
+If you use PyMOCAT-MC in your research, please cite:
+
+```bibtex
+@software{kukreja2025pymocatmc,
+  author = {Kukreja, Rushil and Oughton, Edward J. and Lavezzi, Giovanni and 
+            Zucchelli, Enrico M. and Jang, Daniel and Linares, Richard},
+  title = {PyMOCAT-MC: A Python Implementation of the MIT Orbital Capacity 
+           Assessment Toolbox Monte Carlo Module},
+  year = {2025},
+  url = {https://github.com/rushilkukreja/PyMOCAT-MC-2},
+  journal = {Journal of Open Source Software}
+}
 ```
 
 ---

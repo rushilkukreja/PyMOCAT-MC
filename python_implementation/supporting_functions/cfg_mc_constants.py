@@ -4,7 +4,7 @@ Python equivalent of cfgMC_constants.m
 """
 
 import numpy as np
-from getgravc import getgravc
+from .getgravc import getgravc
 
 
 class CfgMCConstants:
