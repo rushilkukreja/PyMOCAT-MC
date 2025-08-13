@@ -65,23 +65,58 @@ jobs:
             ./paper.*
           if-no-files-found: ignore
           
-      - name: Copy PDF to paper folder and commit
-        if: hashFiles('paper.pdf') != ''
+      - name: Find and prepare PDF for commit
+        id: find_pdf
         run: |
-          # Copy the generated PDF to the paper folder
-          cp paper.pdf paper/paper.pdf
+          echo "=== Looking for generated PDF ==="
           
-          # Configure Git
+          # First check if paper.pdf exists at root (most common)
+          if [ -f "paper.pdf" ]; then
+            echo "Found paper.pdf at root"
+            cp paper.pdf paper/paper.pdf
+            echo "pdf_found=true" >> $GITHUB_OUTPUT
+          else
+            # Search for any PDF file
+            PDF_PATH=$(find . -name "*.pdf" -type f 2>/dev/null | grep -v ".git" | head -1)
+            
+            if [ -n "$PDF_PATH" ]; then
+              echo "Found PDF at: $PDF_PATH"
+              cp "$PDF_PATH" paper/paper.pdf
+              echo "pdf_found=true" >> $GITHUB_OUTPUT
+            else
+              echo "No PDF found in filesystem"
+              echo "pdf_found=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+          
+          # Verify the copy worked
+          if [ -f "paper/paper.pdf" ]; then
+            echo "PDF successfully copied to paper/paper.pdf"
+            ls -lh paper/paper.pdf
+          else
+            echo "Failed to copy PDF to paper/paper.pdf"
+          fi
+          
+      - name: Commit and push PDF to repository
+        if: steps.find_pdf.outputs.pdf_found == 'true'
+        run: |
+          # Configure Git with bot identity
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Add and commit the PDF
+          # Stage the PDF file
           git add paper/paper.pdf
-          git diff --staged --quiet || git commit -m "Update paper PDF from GitHub Actions build"
           
-      - name: Push changes
-        if: hashFiles('paper.pdf') != ''
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          # Create commit if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit (PDF unchanged)"
+          else
+            git commit -m "Update paper PDF from GitHub Actions build
+            
+            Generated from commit: ${{ github.sha }}
+            Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            
+            # Push to the current branch
+            git push origin HEAD:${{ github.ref_name }}
+            echo "PDF successfully committed and pushed to repository"
+          fi
