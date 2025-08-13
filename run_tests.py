@@ -38,12 +38,15 @@ def run_test(name, script_path):
                 print(f"{YELLOW}Run: pip install -r requirements.txt{RESET}")
                 return "deps_missing"
         
+        # Always run from repository root
+        repo_root = Path(__file__).parent
+        
         result = subprocess.run(
             [sys.executable, str(script_path)],
             capture_output=True,
             text=True,
             timeout=120,  # Increased timeout
-            cwd=script_path.parent.parent  # Run from repo root
+            cwd=str(repo_root)  # Always run from repository root
         )
         
         # Print output
