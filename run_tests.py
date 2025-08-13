@@ -136,7 +136,7 @@ def main():
         if test_path.exists():
             results[test_name] = run_test(test_name, test_path)
         else:
-            print(f"\n{YELLOW}⚠ Skipping {test_name}: File not found at {test_path}{RESET}")
+            print(f"\n{YELLOW}! Skipping {test_name}: File not found at {test_path}{RESET}")
             results[test_name] = "skipped"
     
     # Print summary

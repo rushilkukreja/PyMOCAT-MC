@@ -148,13 +148,13 @@ If tests fail due to missing data files:
 
 When all tests pass, you should see:
 ```
-✓ Basic functionality tests: PASSED
-✓ Import test: PASSED
-✓ Minimal simulation test: PASSED
-✓ Simple run test: PASSED
-✓ Quick Start example: PASSED
++ Basic functionality tests: PASSED
++ Import test: PASSED
++ Minimal simulation test: PASSED
++ Simple run test: PASSED
++ Quick Start example: PASSED
 
-All tests passed! ✅
+All tests passed!
 ```
 
 ## Warnings
@@ -180,7 +180,7 @@ The script returns:
 
 ### Common Issues and Solutions
 
-#### 📦 Missing Dependencies
+#### Package: Missing Dependencies
 ```
 Error: ModuleNotFoundError: No module named 'numpy'
 ```
@@ -191,7 +191,7 @@ pip install -r requirements.txt
 python3 setup_environment.py
 ```
 
-#### 🗂️ Wrong Working Directory
+#### Directory: Wrong Working Directory
 ```
 Error: No such file or directory: 'python_implementation/...'
 ```
@@ -202,7 +202,7 @@ cd PyMOCAT-MC-2
 python3 run_tests.py
 ```
 
-#### 🐍 Python Version Issues
+#### Python: Python Version Issues
 ```
 Error: Python 3.8 or higher is required
 ```
@@ -211,7 +211,7 @@ Error: Python 3.8 or higher is required
 - On Ubuntu: `sudo apt install python3.8`
 - On macOS: `brew install python@3.8`
 
-#### ⏱️ Tests Hanging/Timeout
+#### Timeout: Tests Hanging/Timeout
 ```
 Error: Test timed out (>120 seconds)
 ```
@@ -220,7 +220,7 @@ Error: Test timed out (>120 seconds)
 - Try running: `python3 setup_environment.py`
 - Run individual tests to isolate the issue
 
-#### 🔧 Virtual Environment Issues
+#### Environment: Virtual Environment Issues
 ```
 Error: Virtual environment activation fails
 ```
@@ -231,7 +231,7 @@ rm -rf venv test_env verify_env pymocat_env
 python3 setup_environment.py
 ```
 
-#### 📊 Missing TLE Data
+#### Data: Missing TLE Data
 ```
 Warning: Could not find 2020.mat file
 ```
@@ -240,7 +240,7 @@ Warning: Could not find 2020.mat file
 - This is expected for most users - not a failure
 - Full TLE data would need to be provided separately
 
-#### 🪟 Windows-Specific Issues
+#### Windows: Windows-Specific Issues
 ```
 Error: 'python3' is not recognized
 ```

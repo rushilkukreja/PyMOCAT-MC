@@ -55,19 +55,19 @@ python3 comparison_tests/test_quick_scenarios.py
 ## Test Coverage
 
 The test suite validates:
-- ✅ Core imports and dependencies
-- ✅ Data file access (TLE historic data)
-- ✅ Basic simulation pipeline
-- ✅ Orbital mechanics calculations
-- ✅ Object categorization
-- ✅ End-to-end functionality
-- ✅ Example script execution
+- Core imports and dependencies
+- Data file access (TLE historic data)
+- Basic simulation pipeline
+- Orbital mechanics calculations
+- Object categorization
+- End-to-end functionality
+- Example script execution
 
 ## Expected Results
 
 All tests should pass with output:
 ```
-✅ All tests passed!
+All tests passed!
 ```
 
 For troubleshooting, see `../TESTING.md`.

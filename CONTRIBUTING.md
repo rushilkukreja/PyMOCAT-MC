@@ -55,7 +55,7 @@ python run_tests.py  # Verify setup
 Before submitting any changes:
 
 1. **Run the test suite**: `python run_tests.py`
-2. **Verify all tests pass**: Look for "All tests passed! ✅"
+2. **Verify all tests pass**: Look for "All tests passed!"
 3. **Test on your target platform** (Windows/macOS/Linux)
 4. **Add new tests** for any new functionality
 

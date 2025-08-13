@@ -61,7 +61,7 @@ After installation, verify everything works:
 python3 run_tests.py
 
 # Quick functionality check
-cd python_implementation && python3 -c "from mocat_mc import MOCATMC; print('✓ PyMOCAT-MC installed successfully')"
+cd python_implementation && python3 -c "from mocat_mc import MOCATMC; print('+ PyMOCAT-MC installed successfully')"
 ```
 
 ### Install with Development Dependencies
@@ -271,9 +271,9 @@ If you use PyMOCAT-MC in your research, please cite:
 
 ## Contributors
 
-- Rushil Kukreja, Thomas Jefferson High School for Science and Technology
-- Dr. Edward J. Oughton, Assistant Professor, George Mason University
-- Dr. Giovanni Lavezzi, Research Scientist, Massachusetts Institute of Technology
-- Dr. Enrico M. Zucchelli, Postdoctoral Associate, Massachusetts Institute of Technology
-- Dr. Daniel Jang, Technical Staff, Lincoln Laboratory
-- Dr. Richard Linares, Associate Professor, Massachusetts Institute of Technology
+- **Rushil Kukreja**, Student, Thomas Jefferson High School for Science and Technology
+- **Dr. Edward J. Oughton**, Assistant Professor, George Mason University
+- **Dr. Giovanni Lavezzi**, Research Scientist, Massachusetts Institute of Technology
+- **Dr. Enrico M. Zucchelli**, Postdoctoral Associate, Massachusetts Institute of Technology
+- **Dr. Daniel Jang**, Technical Staff, Lincoln Laboratory
+- **Dr. Richard Linares**, Associate Professor, Massachusetts Institute of Technology
