@@ -38,8 +38,8 @@ def run_test(name, script_path):
                 print(f"{YELLOW}Run: pip install -r requirements.txt{RESET}")
                 return "deps_missing"
         
-        # Ensure we run from the repository root where run_tests.py is located
-        repo_root = Path(__file__).parent.resolve()
+        # Ensure we run from the repository root (parent of tests directory)
+        repo_root = Path(__file__).parent.parent.resolve()
         
         result = subprocess.run(
             [sys.executable, str(script_path)],
@@ -117,8 +117,8 @@ def main():
     print(f"{BOLD}{'='*60}{RESET}")
     
     # Get paths
-    repo_root = Path(__file__).parent
-    test_dir = repo_root / "python_implementation" / "tests"
+    test_dir = Path(__file__).parent  # tests/ directory 
+    repo_root = test_dir.parent       # repository root
     examples_dir = repo_root / "python_implementation" / "examples"
     
     # Define tests to run

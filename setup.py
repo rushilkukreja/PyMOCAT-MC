@@ -21,11 +21,11 @@ setup(
     description="Python implementation of the MIT Orbital Capacity Assessment Toolbox - Monte Carlo",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/rushilkukreja/PyMOCAT-MC-2",
+    url="https://github.com/rushilkukreja/PyMOCAT-MC",
     project_urls={
-        "Bug Tracker": "https://github.com/rushilkukreja/PyMOCAT-MC-2/issues",
-        "Documentation": "https://github.com/rushilkukreja/PyMOCAT-MC-2#readme",
-        "Source": "https://github.com/rushilkukreja/PyMOCAT-MC-2",
+        "Bug Tracker": "https://github.com/rushilkukreja/PyMOCAT-MC/issues",
+        "Documentation": "https://github.com/rushilkukreja/PyMOCAT-MC#readme",
+        "Source": "https://github.com/rushilkukreja/PyMOCAT-MC",
     },
     classifiers=[
         "Development Status :: 4 - Beta",

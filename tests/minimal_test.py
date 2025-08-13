@@ -7,8 +7,8 @@ import numpy as np
 import sys
 import os
 
-# Add parent directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+# Add python_implementation directory to path
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'python_implementation'))
 
 try:
     from mocat_mc import MOCATMC

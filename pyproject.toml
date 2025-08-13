@@ -70,10 +70,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/rushilkukreja/PyMOCAT-MC-2"
-Documentation = "https://github.com/rushilkukreja/PyMOCAT-MC-2#readme"
-Repository = "https://github.com/rushilkukreja/PyMOCAT-MC-2"
-"Bug Tracker" = "https://github.com/rushilkukreja/PyMOCAT-MC-2/issues"
+Homepage = "https://github.com/rushilkukreja/PyMOCAT-MC"
+Documentation = "https://github.com/rushilkukreja/PyMOCAT-MC#readme"
+Repository = "https://github.com/rushilkukreja/PyMOCAT-MC"
+"Bug Tracker" = "https://github.com/rushilkukreja/PyMOCAT-MC/issues"
 
 [project.scripts]
 pymocat-mc = "mocat_mc:main"
@@ -92,7 +92,7 @@ exclude = ["tests*"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-testpaths = ["python_implementation/tests", "comparison_tests"]
+testpaths = ["tests", "comparison_tests"]
 python_files = ["test_*.py", "*_test.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]

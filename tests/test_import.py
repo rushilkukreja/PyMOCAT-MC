@@ -12,8 +12,8 @@ try:
     
     import sys
     import os
-    # Add parent directory to path for mocat_mc import
-    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    # Add python_implementation directory to path for mocat_mc import
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'python_implementation'))
     
     from mocat_mc import MOCATMC
     print("OK MOCATMC imported successfully")

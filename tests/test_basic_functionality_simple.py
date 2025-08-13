@@ -7,10 +7,11 @@ import sys
 import os
 from pathlib import Path
 
-# Add parent directory to path for imports (cross-platform)
+# Add python_implementation directory to path for imports (cross-platform)
 script_dir = Path(__file__).parent
-parent_dir = script_dir.parent
-sys.path.insert(0, str(parent_dir))
+repo_root = script_dir.parent
+python_impl_dir = repo_root / "python_implementation"
+sys.path.insert(0, str(python_impl_dir))
 
 print("Running basic functionality tests...")
 

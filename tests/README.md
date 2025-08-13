@@ -4,7 +4,7 @@ This directory contains the complete test suite for PyMOCAT-MC.
 
 ## Test Organization
 
-### Core Tests (`/python_implementation/tests/`)
+### Core Tests (`/tests/`)
 Essential tests for the Python implementation:
 - `test_basic_functionality_simple.py` - Core functionality tests
 - `test_import.py` - Import and data loading tests  
@@ -25,25 +25,25 @@ Original MATLAB test suite:
 ### Quick Testing (Recommended)
 ```bash
 # Run all essential tests (~11 seconds)
-python3 run_tests.py
+python3 tests/run_tests.py
 
-# Or using bash
-./run_tests.sh
+# Or using bash (from repository root)
+./tests/run_tests.sh
 ```
 
 ### Individual Tests
 ```bash
 # Basic functionality (~1s)
-python3 python_implementation/tests/test_basic_functionality_simple.py
+python3 tests/test_basic_functionality_simple.py
 
 # Import validation (~2s)  
-python3 python_implementation/tests/test_import.py
+python3 tests/test_import.py
 
 # Minimal simulation (~5s)
-python3 python_implementation/tests/minimal_test.py
+python3 tests/minimal_test.py
 
 # Simple run (~3s)
-python3 python_implementation/tests/test_simple_run.py
+python3 tests/test_simple_run.py
 ```
 
 ### Comparison Tests

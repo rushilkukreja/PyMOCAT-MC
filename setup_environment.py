@@ -103,9 +103,9 @@ def main():
         print(f"  source {venv_path}/bin/activate")
     
     print("\nTo run tests:")
-    print("  python run_tests.py")
+    print("  python tests/run_tests.py")
     print("  # or")
-    print("  ./run_tests.sh")
+    print("  ./tests/run_tests.sh")
     
     print("\nTo deactivate:")
     print("  deactivate")

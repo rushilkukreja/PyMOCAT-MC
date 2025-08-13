@@ -44,12 +44,12 @@ pip install pymocat-mc
 Clone the repository and install in development mode:
 
 ```bash
-git clone https://github.com/rushilkukreja/PyMOCAT-MC-2.git
-cd PyMOCAT-MC-2
+git clone https://github.com/rushilkukreja/PyMOCAT-MC.git
+cd PyMOCAT-MC
 pip install -e .
 
 # Verify installation works
-python3 run_tests.py
+python3 tests/run_tests.py
 ```
 
 ### Verify Installation
@@ -58,7 +58,7 @@ After installation, verify everything works:
 
 ```bash
 # Run all tests
-python3 run_tests.py
+python3 tests/run_tests.py
 
 # Quick functionality check
 cd python_implementation && python3 -c "from mocat_mc import MOCATMC; print('+ PyMOCAT-MC installed successfully')"
@@ -69,8 +69,8 @@ cd python_implementation && python3 -c "from mocat_mc import MOCATMC; print('+ P
 For contributors and developers:
 
 ```bash
-git clone https://github.com/rushilkukreja/PyMOCAT-MC-2.git
-cd PyMOCAT-MC-2
+git clone https://github.com/rushilkukreja/PyMOCAT-MC.git
+cd PyMOCAT-MC
 pip install -e ".[dev]"
 
 # Or use automated setup (creates virtual environment)
@@ -147,7 +147,7 @@ Supporting data files are provided in the `python_implementation/supporting_data
 ## Project Structure
 
 ```
-PyMOCAT-MC-2/
+PyMOCAT-MC/
 ├── python_implementation/
 │   ├── mocat_mc.py                    # Main MOCAT-MC class
 │   ├── examples/
@@ -176,12 +176,13 @@ PyMOCAT-MC-2/
 │   │   ├── TLEhistoric/               # Historical TLE data (2000-2023)
 │   │   ├── dens_jb2008_032020_022224.mat  # Atmospheric density data
 │   │   └── megaconstellationLaunches.xlsx  # Launch schedules
-│   └── tests/
-│       ├── test_basic_functionality_simple.py  # Core functionality tests
-│       ├── test_import.py             # Import and data loading tests
-│       ├── minimal_test.py            # Minimal 2-step simulation test
-│       └── test_simple_run.py         # Single time-step test
-├── tests/
+├── tests/                             # Main test suite
+│   ├── run_tests.py                   # Python test runner (cross-platform)
+│   ├── run_tests.sh                   # Bash test runner (Unix/macOS)
+│   ├── test_basic_functionality_simple.py  # Core functionality tests
+│   ├── test_import.py                 # Import and data loading tests
+│   ├── minimal_test.py                # Minimal 2-step simulation test
+│   ├── test_simple_run.py             # Single time-step test
 │   └── README.md                      # Test suite documentation
 ├── comparison_tests/                  # Python vs MATLAB comparison tests
 │   ├── test_all_scenarios.py          # Comprehensive comparison across all scenarios
@@ -202,8 +203,6 @@ PyMOCAT-MC-2/
 │   └── error_box_plots.png            # Output: Error distribution visualization
 ├── MATLAB_implementation/             # Original MATLAB implementation
 ├── paper/                             # JOSS paper and figures
-├── run_tests.py                       # Python test runner (cross-platform)
-├── run_tests.sh                       # Bash test runner (Unix/macOS)
 ├── setup_environment.py               # Automated environment setup
 ├── requirements.txt                   # Python dependencies
 ├── pyproject.toml                     # Modern Python packaging configuration
@@ -223,16 +222,16 @@ Run the test suite using our custom test runners:
 
 ```bash
 # Recommended: Run all tests with Python runner
-python3 run_tests.py
+python3 tests/run_tests.py
 
 # Alternative: Use bash runner (Unix/macOS only)
-./run_tests.sh
+./tests/run_tests.sh
 
 # Individual tests
-python3 python_implementation/tests/test_basic_functionality_simple.py
-python3 python_implementation/tests/test_import.py
-python3 python_implementation/tests/minimal_test.py
-python3 python_implementation/tests/test_simple_run.py
+python3 tests/test_basic_functionality_simple.py
+python3 tests/test_import.py
+python3 tests/minimal_test.py
+python3 tests/test_simple_run.py
 ```
 
 For detailed testing instructions and troubleshooting, see [TESTING.md](TESTING.md).
@@ -262,8 +261,7 @@ If you use PyMOCAT-MC in your research, please cite:
   title = {PyMOCAT-MC: A Python Implementation of the MIT Orbital Capacity 
            Assessment Toolbox Monte Carlo Module},
   year = {2025},
-  url = {https://github.com/rushilkukreja/PyMOCAT-MC-2},
-  journal = {Journal of Open Source Software}
+  url = {https://github.com/rushilkukreja/PyMOCAT-MC}
 }
 ```
 
