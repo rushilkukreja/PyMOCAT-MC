@@ -4,12 +4,17 @@ on:
   workflow_dispatch:  # Manual trigger only for testing
   push:
     paths: 
-      - 'paper/**'
+      - 'paper/paper.md'
+      - 'paper/paper.bib'
+      - 'paper/figures/**'
+      - '.github/workflows/draft-pdf.yml'
 
 jobs:
   paper:
     runs-on: ubuntu-latest
     name: Generate draft PDF
+    permissions:
+      contents: write  # Allow writing to repository
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,3 +64,24 @@ jobs:
             ./**/*.log
             ./paper.*
           if-no-files-found: ignore
+          
+      - name: Copy PDF to paper folder and commit
+        if: hashFiles('paper.pdf') != ''
+        run: |
+          # Copy the generated PDF to the paper folder
+          cp paper.pdf paper/paper.pdf
+          
+          # Configure Git
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Add and commit the PDF
+          git add paper/paper.pdf
+          git diff --staged --quiet || git commit -m "Update paper PDF from GitHub Actions build"
+          
+      - name: Push changes
+        if: hashFiles('paper.pdf') != ''
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
