@@ -38,6 +38,7 @@ date: 13 August 2025
 bibliography: paper.bib
 aas-journal: Journal of Open Source Software
 software_repository_url: https://github.com/rushilkukreja/PyMOCAT-MC
+archive_doi: 10.5281/zenodo.16831016
 ---
 
 # Summary
