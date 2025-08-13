@@ -27,7 +27,8 @@ authors:
     affiliation: "Massachusetts Institute of Technology"
 title: "PyMOCAT-MC: A Python Implementation of the MIT Orbital Capacity Assessment Toolbox Monte Carlo Module"
 version: 1.0.0
-date-released: 2025-08-11
+date-released: 2025-08-13
+doi: "10.5281/zenodo.16831016"
 url: "https://github.com/rushilkukreja/PyMOCAT-MC"
 license: MIT
 keywords:

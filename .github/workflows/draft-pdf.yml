@@ -121,7 +121,7 @@ jobs:
             Generated from commit: ${{ github.sha }}
             Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             
-            # Push to the current branch
-            git push origin HEAD:${{ github.ref_name }}
+            # Push to main branch
+            git push origin HEAD:main
             echo "PDF successfully committed and pushed to repository"
           fi

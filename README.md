@@ -1,5 +1,8 @@
 # PyMOCAT-MC
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16831016.svg)](https://doi.org/10.5281/zenodo.16831016)
+[![JOSS](https://joss.theoj.org/papers/10.21105/joss.XXXXX/status.svg)](https://joss.theoj.org/papers/10.21105/joss.XXXXX)
+
 **PyMOCAT-MC** is a Python implementation of the MIT Orbital Capacity Assessment Toolbox - Monte Carlo (MOCAT-MC), originally written in MATLAB. This toolbox enables Monte Carlo-based analysis of orbital capacity, debris, and satellite population evolution, supporting research and engineering in space situational awareness and orbital risk. The Python implementation maintains full compatibility with the original MATLAB version while leveraging modern Python scientific computing libraries.
 
 ---
@@ -261,7 +264,8 @@ If you use PyMOCAT-MC in your research, please cite:
   title = {PyMOCAT-MC: A Python Implementation of the MIT Orbital Capacity 
            Assessment Toolbox Monte Carlo Module},
   year = {2025},
-  url = {https://github.com/rushilkukreja/PyMOCAT-MC}
+  url = {https://github.com/rushilkukreja/PyMOCAT-MC},
+  doi = {10.5281/zenodo.16831016}
 }
 ```
 
