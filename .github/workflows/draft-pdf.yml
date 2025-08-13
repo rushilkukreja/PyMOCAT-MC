@@ -1,16 +1,10 @@
 name: Draft PDF
 
 on:
+  workflow_dispatch:  # Manual trigger only for testing
   push:
-    branches: [ main ]
     paths: 
       - 'paper/**'
-      - '.github/workflows/draft-pdf.yml'
-  pull_request:
-    branches: [ main ]
-    paths: 
-      - 'paper/**'
-  workflow_dispatch:  # Allow manual trigger
 
 jobs:
   paper:
@@ -20,37 +14,48 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Generate PDF
+      - name: Validate paper structure
+        run: |
+          echo "=== Checking paper structure ==="
+          ls -la paper/
+          echo ""
+          echo "=== Paper.md first 20 lines ==="
+          head -20 paper/paper.md
+          echo ""
+          echo "=== Bibliography check ==="
+          head -5 paper/paper.bib
+          
+      - name: Build draft PDF
         uses: openjournals/openjournals-draft-action@master
         with:
           journal: joss
           paper-path: paper/paper.md
           
-      - name: List generated files
+      - name: Debug output locations
+        if: always()
         run: |
-          echo "Files in current directory:"
+          echo "=== Searching for generated files ==="
+          find . -name "*.pdf" -type f 2>/dev/null || echo "No PDF files found"
+          find . -name "*.log" -type f 2>/dev/null || echo "No log files found"
+          echo ""
+          echo "=== Working directory ==="
+          pwd
           ls -la
-          echo "Files in paper directory:"
-          ls -la paper/
-          find . -name "*.pdf" -type f
           
-      - name: Upload PDF artifact
+      - name: Upload draft PDF
+        uses: actions/upload-artifact@v4
+        if: hashFiles('paper.pdf') != ''
+        with:
+          name: draft-pdf
+          path: paper.pdf
+          
+      - name: Upload all artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: draft-paper-pdf
+          name: all-outputs
           path: |
-            paper.pdf
-            ./paper.pdf
-            paper/paper.pdf
-            
-      - name: Upload all logs and outputs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: pdf-generation-logs
-          path: |
-            paper.log
-            ./paper.log
-            paper/paper.log
-            *.log
+            ./**/*.pdf
+            ./**/*.log
+            ./paper.*
+          if-no-files-found: ignore
