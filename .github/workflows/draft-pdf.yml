@@ -70,14 +70,19 @@ jobs:
         run: |
           echo "=== Looking for generated PDF ==="
           
-          # First check if paper.pdf exists at root (most common)
-          if [ -f "paper.pdf" ]; then
-            echo "Found paper.pdf at root"
+          # Check if PDF already exists in paper directory
+          if [ -f "paper/paper.pdf" ]; then
+            echo "PDF already exists at paper/paper.pdf"
+            ls -lh paper/paper.pdf
+            echo "pdf_found=true" >> $GITHUB_OUTPUT
+          # Check if paper.pdf exists at root
+          elif [ -f "paper.pdf" ]; then
+            echo "Found paper.pdf at root, copying to paper/"
             cp paper.pdf paper/paper.pdf
             echo "pdf_found=true" >> $GITHUB_OUTPUT
           else
-            # Search for any PDF file
-            PDF_PATH=$(find . -name "*.pdf" -type f 2>/dev/null | grep -v ".git" | head -1)
+            # Search for any PDF file (excluding paper directory)
+            PDF_PATH=$(find . -name "*.pdf" -type f 2>/dev/null | grep -v "./paper/" | grep -v ".git" | head -1)
             
             if [ -n "$PDF_PATH" ]; then
               echo "Found PDF at: $PDF_PATH"
@@ -89,12 +94,12 @@ jobs:
             fi
           fi
           
-          # Verify the copy worked
+          # Final verification
           if [ -f "paper/paper.pdf" ]; then
-            echo "PDF successfully copied to paper/paper.pdf"
-            ls -lh paper/paper.pdf
+            echo "PDF ready for commit at paper/paper.pdf"
+            echo "File size: $(ls -lh paper/paper.pdf | awk '{print $5}')"
           else
-            echo "Failed to copy PDF to paper/paper.pdf"
+            echo "ERROR: No PDF available to commit"
           fi
           
       - name: Commit and push PDF to repository

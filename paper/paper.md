@@ -76,4 +76,4 @@ Error analysis confirms that the differences between MATLAB and Python remain mi
 
 These improvements reduce the time required for large simulation batches, making it feasible to explore a wider range of parameters and run more detailed sensitivity analyses.
 
-# References
+# R
