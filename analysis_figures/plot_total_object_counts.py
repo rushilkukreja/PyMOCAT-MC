@@ -21,8 +21,9 @@ def plot_total_object_counts():
     x = np.arange(len(scenarios))
     width = 0.35
     
-    bars1 = ax.bar(x - width/2, python_totals, width, label='Python', color='green', alpha=0.8)
-    bars2 = ax.bar(x + width/2, matlab_totals, width, label='MATLAB', color='red', alpha=0.8)
+    # Colorblind-friendly colors: blue and orange
+    bars1 = ax.bar(x - width/2, python_totals, width, label='Python', color='#0173B2', alpha=0.8)
+    bars2 = ax.bar(x + width/2, matlab_totals, width, label='MATLAB', color='#DE8F05', alpha=0.8)
     
     # Formatting
     ax.set_title('Total Object Counts Comparison', fontsize=24, fontweight='bold', pad=20)

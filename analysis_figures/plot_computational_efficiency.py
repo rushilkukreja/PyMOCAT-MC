@@ -49,10 +49,11 @@ def plot_computational_efficiency():
     x_pos = np.arange(len(scenarios_short))
     width = 0.35
     
+    # Colorblind-friendly colors: blue and orange
     bars1 = ax.bar(x_pos - width/2, objects_per_sec_py, width, 
-                   label='Python', color='green', alpha=0.8)
+                   label='Python', color='#0173B2', alpha=0.8)
     bars2 = ax.bar(x_pos + width/2, objects_per_sec_mat, width, 
-                   label='MATLAB', color='red', alpha=0.8)
+                   label='MATLAB', color='#DE8F05', alpha=0.8)
     
     # Formatting
     ax.set_ylabel('Objects Processed per Second (log scale)', fontsize=20)
@@ -69,23 +70,23 @@ def plot_computational_efficiency():
     for i, (py_eff, mat_eff) in enumerate(zip(objects_per_sec_py, objects_per_sec_mat)):
         # Python bars
         ax.text(i - width/2, py_eff * 1.2, f'{py_eff:.0f}', ha='center', va='bottom', 
-               fontsize=16, fontweight='bold', color='darkgreen')
+               fontsize=16, fontweight='bold', color='#004B87')  # Darker blue
         # MATLAB bars  
         ax.text(i + width/2, mat_eff * 1.2, f'{mat_eff:.0f}', ha='center', va='bottom', 
-               fontsize=16, fontweight='bold', color='darkred')
+               fontsize=16, fontweight='bold', color='#B07C0A')  # Darker orange
     
     # Add performance ratio annotations
     for i, (py_eff, mat_eff) in enumerate(zip(objects_per_sec_py, objects_per_sec_mat)):
         ratio = py_eff / mat_eff
         y_pos = max(py_eff, mat_eff) * 3
         
-        # Color box red if MATLAB is faster (ratio < 1), green if Python is faster
+        # Color box orange if MATLAB is faster (ratio < 1), blue if Python is faster
         if ratio < 1:
-            color = 'darkred'
-            facecolor = 'lightcoral'
+            color = '#B07C0A'  # Darker orange
+            facecolor = '#FDBF6F'  # Light orange
         else:
-            color = 'darkgreen'  
-            facecolor = 'lightgreen'
+            color = '#004B87'  # Darker blue
+            facecolor = '#A1C8E9'  # Light blue
             
         ax.annotate(f'{ratio:.1f}x', 
                    xy=(i, y_pos), ha='center', va='bottom',

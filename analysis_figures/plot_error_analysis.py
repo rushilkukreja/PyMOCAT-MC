@@ -31,8 +31,8 @@ def create_error_box_plots():
     rel_labels = ['Satellites', 'Derelicts', 'Debris', 'Rocket\nBodies']
     
     bp = ax.boxplot(rel_data, tick_labels=rel_labels, patch_artist=True,
-                    boxprops=dict(facecolor='green', alpha=0.7),
-                    medianprops=dict(color='red', linewidth=2))
+                    boxprops=dict(facecolor='#0173B2', alpha=0.7),  # Colorblind-friendly blue
+                    medianprops=dict(color='#DE8F05', linewidth=2))  # Colorblind-friendly orange
     
     ax.set_title('Relative Error Distribution', fontsize=24, fontweight='bold')
     ax.set_ylabel('Relative Error (%)', fontsize=20)

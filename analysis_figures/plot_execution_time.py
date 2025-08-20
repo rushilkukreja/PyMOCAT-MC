@@ -21,8 +21,9 @@ def plot_execution_time():
     x = np.arange(len(scenarios))
     width = 0.35
     
-    bars1 = ax.bar(x - width/2, python_times, width, label='Python', color='green', alpha=0.8)
-    bars2 = ax.bar(x + width/2, matlab_times, width, label='MATLAB', color='red', alpha=0.8)
+    # Colorblind-friendly colors: blue and orange
+    bars1 = ax.bar(x - width/2, python_times, width, label='Python', color='#0173B2', alpha=0.8)
+    bars2 = ax.bar(x + width/2, matlab_times, width, label='MATLAB', color='#DE8F05', alpha=0.8)
     
     # Formatting
     ax.set_title('Execution Time Comparison', fontsize=24, fontweight='bold', pad=20)
@@ -41,23 +42,23 @@ def plot_execution_time():
     for i, (py, mat) in enumerate(zip(python_times, matlab_times)):
         # Python bars
         ax.text(i - width/2, py * 1.1, f'{py:.2f}s', ha='center', va='bottom',
-                fontsize=16, color='darkgreen')
+                fontsize=16, color='#004B87')  # Darker blue
         # MATLAB bars
         ax.text(i + width/2, mat * 1.1, f'{mat:.1f}s', ha='center', va='bottom',
-                fontsize=16, color='darkred')
+                fontsize=16, color='#B07C0A')  # Darker orange
     
     # Add speedup factors
     for i, (py, mat) in enumerate(zip(python_times, matlab_times)):
         speedup = mat / py
         y_pos = max(py, mat) * 2
         
-        # Color box red if MATLAB is faster (speedup < 1), green if Python is faster
+        # Color box orange if MATLAB is faster (speedup < 1), blue if Python is faster
         if speedup < 1:
-            color = 'darkred'
-            facecolor = 'lightcoral'
+            color = '#B07C0A'  # Darker orange
+            facecolor = '#FDBF6F'  # Light orange
         else:
-            color = 'green'
-            facecolor = 'lightgreen'
+            color = '#004B87'  # Darker blue
+            facecolor = '#A1C8E9'  # Light blue
             
         ax.annotate(f'{speedup:.1f}x', xy=(i, y_pos), ha='center', va='bottom',
                    color=color, fontweight='bold', fontsize=18,

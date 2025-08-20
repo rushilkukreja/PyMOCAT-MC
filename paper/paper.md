@@ -69,14 +69,14 @@ Across all tested scenarios, PyMOCAT-MC reproduces the results of the MATLAB imp
 
 In addition to matching the accuracy of MATLAB, the Python version delivers substantial performance gains. The most computationally demanding scenario, which includes realistic launch patterns for megaconstellations, runs in less than 29.95 seconds with PyMOCAT-MC compared to 75.02 seconds in MATLAB, representing a speed-up larger than a factor of two. 
 
-![Runtime comparison between MATLAB and Python implementations for multiple scenarios, showing up to a 4× improvement in computational speed for PyMOCAT-MC.](figures/execution_time_comparison.png)
+![Runtime comparison between MATLAB and Python implementations for multiple scenarios, showing up to a 4× improvement in computational speed for PyMOCAT-MC.](figures/execution_time_comparison.png){width=80%}
 
-Error analysis confirms that the differences between MATLAB and Python remain minimal across simulation years and object types. The heatmap and box plots highlights that relative errors are uniformly low; the mean relative error is 0.96%, and the maximum error across object types and time horizons is 2.38%. Specifically among satellites and debris, the error is consistently lower than 0.4%.
+Error analysis confirms that the differences between MATLAB and Python remain minimal across simulation years and object types. The heatmap and box plots highlights that relative errors are uniformly low; the mean relative error is 0.96%, and the maximum error across object types and time horizons is 2.38%. Specifically among satellites and debris, the error is consistently lower than 0.61%.
 
-![Heatmap of relative error (%) across simulation years and object types, illustrating consistent accuracy of the Python implementation compared to MATLAB.](figures/object_type_percentage_heatmap.png)
+![Heatmap of relative error (%) across simulation years and object types, illustrating consistent accuracy of the Python implementation compared to MATLAB.](figures/object_type_percentage_heatmap.png){width=80%}
 
-![Relative error distribution box plots across object classes, showing PyMOCAT-MC achieves near-zero error for satellites and consistently low error across all categories.](figures/error_box_plots.png)
+![Relative error distribution box plots across object classes, showing PyMOCAT-MC achieves near-zero error for satellites and consistently low error across all categories.](figures/error_box_plots.png){width=80%}
 
-These improvements reduce the time required for large simulation batches, making it feasible to explore a wider range of parameters and run more detailed sensitivity analyses.
+These improvements reduce the time required for large simulation batches, enabling exploration of a wider range of parameters and more detailed sensitivity analyses. PyMOCAT-MC can be applied to test how different launch strategies influence orbital sustainability, evaluate debris mitigation policies, and generate scenario libraries that inform both engineering design and regulatory decision-making.
 
 # References
