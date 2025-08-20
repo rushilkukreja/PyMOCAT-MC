@@ -36,6 +36,7 @@ def create_error_box_plots():
     
     ax.set_title('Relative Error Distribution', fontsize=24, fontweight='bold')
     ax.set_ylabel('Relative Error (%)', fontsize=20)
+    ax.tick_params(axis='x', labelsize=18)  # Increase x-axis label font size
     ax.grid(True, alpha=0.3)
     ax.set_ylim(bottom=0, top=2.6)
     

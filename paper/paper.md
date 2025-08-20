@@ -12,39 +12,35 @@ authors:
     affiliation: 1
   - name: Edward J. Oughton
     orcid: 0000-0002-2766-008X
-    affiliation: 2
+    affiliation: 1
   - name: Giovanni Lavezzi
     orcid: 0000-0002-1990-4574
-    affiliation: 3
+    affiliation: 2
   - name: Enrico M. Zucchelli
     orcid: 0000-0001-8894-2016
-    affiliation: 3
+    affiliation: 2
   - name: Daniel Jang
     orcid: 0000-0001-7852-0151
-    affiliation: 4
+    affiliation: 3
   - name: Richard Linares
     orcid: 0000-0001-8325-7378
-    affiliation: 3
+    affiliation: 2
 affiliations:
-  - name: |
-      Thomas Jefferson High School for Science and Technology,
-      Alexandria, VA, USA
-    index: 1
   - name: |
       Department of Geography and Geoinformation Science,
       George Mason University,
       Fairfax, VA, USA
-    index: 2
+    index: 1
   - name: |
       Department of Aeronautics and Astronautics,
       Massachusetts Institute of Technology,
       Cambridge, MA, USA
-    index: 3
+    index: 2
   - name: |
       Lincoln Laboratory,
       Massachusetts Institute of Technology,
       Lexington, MA, USA
-    index: 4
+    index: 3
 date: 13 August 2025
 bibliography: paper.bib
 aas-journal: Journal of Open Source Software

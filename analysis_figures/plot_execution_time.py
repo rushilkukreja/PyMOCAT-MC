@@ -36,7 +36,7 @@ def plot_execution_time():
     ax.grid(True, alpha=0.3)
     
     # Set y-axis limits
-    ax.set_ylim(bottom=0.01, top=220)
+    ax.set_ylim(bottom=0.01, top=350)
     
     # Add time values on bars
     for i, (py, mat) in enumerate(zip(python_times, matlab_times)):
