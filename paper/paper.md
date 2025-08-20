@@ -26,13 +26,24 @@ authors:
     orcid: 0000-0001-8325-7378
     affiliation: 3
 affiliations:
-  - name: Thomas Jefferson High School for Science and Technology, Alexandria, VA, USA
+  - name: |
+      Thomas Jefferson High School for Science and Technology,
+      Alexandria, VA, USA
     index: 1
-  - name: Department of Geography and Geoinformation Science, George Mason University, Fairfax, VA, USA
+  - name: |
+      Department of Geography and Geoinformation Science,
+      George Mason University,
+      Fairfax, VA, USA
     index: 2
-  - name: Department of Aeronautics and Astronautics, Massachusetts Institute of Technology, Cambridge, MA, USA
+  - name: |
+      Department of Aeronautics and Astronautics,
+      Massachusetts Institute of Technology,
+      Cambridge, MA, USA
     index: 3
-  - name: Lincoln Laboratory, Massachusetts Institute of Technology, Lexington, MA, USA
+  - name: |
+      Lincoln Laboratory,
+      Massachusetts Institute of Technology,
+      Lexington, MA, USA
     index: 4
 date: 13 August 2025
 bibliography: paper.bib
