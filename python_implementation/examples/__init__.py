@@ -1,1 +1,1 @@
-# Examples package for MOCAT-MC Python implementation
+"""Examples package for MOCAT-MC Python implementation."""

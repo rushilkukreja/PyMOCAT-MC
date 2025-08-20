@@ -1,1 +1,1 @@
-# Supporting functions package for MOCAT-MC Python implementation
+"""Supporting functions package for MOCAT-MC Python implementation."""

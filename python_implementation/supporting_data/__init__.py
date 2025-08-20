@@ -1,1 +1,1 @@
-# Supporting data package for MOCAT-MC Python implementation
+"""Supporting data package for MOCAT-MC Python implementation."""

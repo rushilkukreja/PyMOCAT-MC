@@ -1,1 +1,1 @@
-# Realistic Scenario examples for MOCAT-MC Python implementation
+"""Realistic Scenario examples for MOCAT-MC Python implementation."""

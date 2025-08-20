@@ -11,7 +11,7 @@ Differences from numpy/scipy built-ins:
 
 Args:
     X: array of x coordinates (strictly increasing)
-    V: array of corresponding values 
+    V: array of corresponding values
     x: query point
 
 Returns:
@@ -25,34 +25,34 @@ import warnings
 def lininterp1(X, V, x):
     """
     Linear interpolation for 1D data
-    
+
     Args:
         X: array of x coordinates (strictly increasing)
         V: array of corresponding values
         x: query point
-        
+
     Returns:
         v: interpolated value
     """
-    
+
     X = np.asarray(X)
     V = np.asarray(V)
-    
+
     if len(X) != len(V):
         raise ValueError('X and V sizes do not match')
-    
+
     # Find indices for interpolation
     pindex_mask = x >= X
     index_mask = x <= X
-    
-    # Get the last index where x >= X[i] 
+
+    # Get the last index where x >= X[i]
     pindex_candidates = np.where(pindex_mask)[0]
     pindex = pindex_candidates[-1] if len(pindex_candidates) > 0 else None
-    
+
     # Get the first index where x <= X[i]
     index_candidates = np.where(index_mask)[0]
     index = index_candidates[0] if len(index_candidates) > 0 else None
-    
+
     if pindex is None:
         warnings.warn('interpolating before beginning')
         pindex = index
@@ -66,7 +66,7 @@ def lininterp1(X, V, x):
     else:
         Xp = X[pindex]
         slope = (x - Xp) / (X[index] - Xp)
-    
+
     v = V[pindex] * (1 - slope) + V[index] * slope
-    
+
     return v

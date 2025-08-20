@@ -1,1 +1,1 @@
-# Quick Start examples for MOCAT-MC Python implementation
+"""Quick Start examples for MOCAT-MC Python implementation."""

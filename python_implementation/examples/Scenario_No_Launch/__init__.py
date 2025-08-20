@@ -1,1 +1,1 @@
-# Scenario No Launch examples for MOCAT-MC Python implementation
+"""Scenario No Launch examples for MOCAT-MC Python implementation."""

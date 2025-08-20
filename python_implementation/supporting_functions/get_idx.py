@@ -1,13 +1,14 @@
 """
-Matrix indices for satellite data structure
-Python equivalent of getidx.m
+Matrix indices for satellite data structure.
+
+Python equivalent of getidx.m.
 
 Defines column indices for the satellite matrix structure used throughout MOCAT-MC.
 """
 
 # Direct variable assignments matching MATLAB getidx.m
 idx_a = 0           # Semi-major axis (MATLAB: 1, Python: 0-indexed)
-idx_ecco = 1        # Eccentricity  
+idx_ecco = 1        # Eccentricity
 idx_inclo = 2       # Inclination
 idx_nodeo = 3       # Right ascension of ascending node
 idx_argpo = 4       # Argument of perigee
@@ -31,7 +32,7 @@ idx_ID = 23           # Object ID
 def get_idx():
     """
     Get matrix indices for satellite data structure
-    
+
     Returns:
         Dictionary containing all matrix indices
     """

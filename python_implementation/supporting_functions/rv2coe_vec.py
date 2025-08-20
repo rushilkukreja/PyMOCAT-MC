@@ -43,28 +43,28 @@ from newtonnu_vec import newtonnu_vec
 def rv2coe_vec(r, v, mu):
     """
     Convert position and velocity vectors to classical orbital elements
-    
+
     Args:
         r: position vectors (N x 3) in km
         v: velocity vectors (N x 3) in km/s
         mu: gravitational parameter in km3/s2
-        
+
     Returns:
         tuple of orbital elements:
         (p, a, ecc, incl, omega, argp, nu, m, arglat, truelon, lonper)
     """
-    
+
     # Constants
     small = 1e-8
     infinite = 999999.9
     undefined = 999999.1
     twopi = 2.0 * np.pi
     halfpi = np.pi * 0.5
-    
+
     # Ensure inputs are numpy arrays
     r = np.atleast_2d(r)
     v = np.atleast_2d(v)
-    
+
     # Preallocation
     num_el = r.shape[0]
     a = np.zeros(num_el)
@@ -78,32 +78,32 @@ def rv2coe_vec(r, v, mu):
     arglat = np.zeros(num_el)
     truelon = np.zeros(num_el)
     lonper = np.zeros(num_el)
-    
+
     # Implementation
     magr = np.sqrt(np.sum(r**2, axis=1))
     magv = np.sqrt(np.sum(v**2, axis=1))
-    
+
     # Find h, n and e vectors
     hbar = cross_vec(r, v)
     magh = np.sqrt(np.sum(hbar**2, axis=1))
     check_small = magh > small
     idx_small = np.where(check_small)[0]
     sum_check_small = np.sum(check_small)
-    
+
     if sum_check_small > 0:
         # Line of nodes vector
         nbar = np.zeros((sum_check_small, 3))
         nbar[:, 0] = -hbar[idx_small, 1]
         nbar[:, 1] = hbar[idx_small, 0]
         magn = np.sqrt(np.sum(nbar**2, axis=1))
-        
+
         # Extract values for valid orbits
         magr_check = magr[idx_small]
         magv_check = magv[idx_small]
         magh_check = magh[idx_small]
         r_check = r[idx_small, :]
         v_check = v[idx_small, :]
-        
+
         # Calculate eccentricity vector
         c1 = magv_check**2 - mu / magr_check
         rdotv = np.sum(r_check * v_check, axis=1)
@@ -112,20 +112,20 @@ def rv2coe_vec(r, v, mu):
         ebar[:, 1] = (c1 * r_check[:, 1] - rdotv * v_check[:, 1]) / mu
         ebar[:, 2] = (c1 * r_check[:, 2] - rdotv * v_check[:, 2]) / mu
         ecci = np.sqrt(np.sum(ebar**2, axis=1))
-        
+
         # Find a, e and semi-latus rectum
         sme = (magv_check**2 * 0.5) - (mu / magr_check)
         check_sme = np.abs(sme) > small
         a[idx_small[check_sme]] = -mu / (2.0 * sme[check_sme])
         a[idx_small[~check_sme]] = infinite
         p[idx_small] = magh_check**2 / mu
-        
+
         # Find inclination
         hk = hbar[idx_small, 2] / magh_check
         # Clamp to [-1, 1] to avoid numerical errors
         hk = np.clip(hk, -1.0, 1.0)
         incli = np.arccos(hk)
-        
+
         # Determine type of orbit for later use
         # [0,1,2,3] = [ei,ee,ce,ci], ei is default
         typeorbit = np.zeros(sum_check_small, dtype=int)
@@ -133,19 +133,19 @@ def rv2coe_vec(r, v, mu):
         check_notecc = ~check_ecc
         idx_ecc = np.where(check_ecc)[0]
         idx_notecc = np.where(check_notecc)[0]
-        
+
         if len(idx_ecc) > 0:
             check_in = (incli[idx_ecc] < small) | (np.abs(incli[idx_ecc] - np.pi) < small)
             # Circular equatorial
             typeorbit[idx_ecc[check_in]] = 2
             # Circular inclined
             typeorbit[idx_ecc[~check_in]] = 3
-        
+
         # Elliptical, parabolic, hyperbolic equatorial
         if len(idx_notecc) > 0:
             check_eq = (incli[idx_notecc] < small) | (np.abs(incli[idx_notecc] - np.pi) < small)
             typeorbit[idx_notecc[check_eq]] = 1
-        
+
         # Find longitude of ascending node
         check_magn = magn > small
         if np.any(check_magn):
@@ -158,7 +158,7 @@ def rv2coe_vec(r, v, mu):
             omega[idx_small[~check_magn]] = undefined
         else:
             omega[idx_small] = undefined
-        
+
         # Find argument of perigee
         check_ei = typeorbit == 0
         if np.any(check_ei):
@@ -169,7 +169,7 @@ def rv2coe_vec(r, v, mu):
             argp[idx_small[~check_ei]] = undefined
         else:
             argp[idx_small] = undefined
-        
+
         # Find true anomaly at epoch
         check_e = typeorbit < 1.5
         if np.any(check_e):
@@ -180,7 +180,7 @@ def rv2coe_vec(r, v, mu):
             nu[idx_small[~check_e]] = undefined
         else:
             nu[idx_small] = undefined
-        
+
         # Find argument of latitude - circular inclined
         check_ci = typeorbit == 3
         if np.any(check_ci):
@@ -192,12 +192,12 @@ def rv2coe_vec(r, v, mu):
             arglat[idx_small[~check_ci]] = undefined
         else:
             arglat[idx_small] = undefined
-        
+
         # Find longitude of perigee - elliptical equatorial
         if len(idx_notecc) > 0:
             check_ee = typeorbit[idx_notecc] == 1
             idx_ee = idx_notecc[check_ee]
-            
+
             if len(idx_ee) > 0:
                 temp = ebar[idx_ee, 0] / ecci[idx_ee]
                 temp = np.clip(temp, -1.0, 1.0)
@@ -210,7 +210,7 @@ def rv2coe_vec(r, v, mu):
                 lonper[idx_small[idx_notecc[~check_ee]]] = undefined
             else:
                 lonper[idx_small[idx_notecc]] = undefined
-        
+
         # Find true longitude - circular equatorial
         check_magr = (magr_check > 0) & (typeorbit == 2)
         if np.any(check_magr):
@@ -226,16 +226,16 @@ def rv2coe_vec(r, v, mu):
             truelon[idx_small[~check_magr]] = undefined
         else:
             truelon[idx_small] = undefined
-        
+
         # Find mean anomaly for all orbits
         if np.any(check_e):
             _, m_temp = newtonnu_vec(ecci[check_e], nu[idx_small[check_e]])
             m[idx_small[check_e]] = m_temp
-        
+
         # Assign calculated values
         ecc[idx_small] = ecci
         incl[idx_small] = incli
-    
+
     # Handle small angular momentum cases
     idx_notsmall = np.where(~check_small)[0]
     if len(idx_notsmall) > 0:
@@ -250,5 +250,5 @@ def rv2coe_vec(r, v, mu):
         arglat[idx_notsmall] = undefined
         truelon[idx_notsmall] = undefined
         lonper[idx_notsmall] = undefined
-    
+
     return p, a, ecc, incl, omega, argp, nu, m, arglat, truelon, lonper
